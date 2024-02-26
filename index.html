@@ -26,6 +26,7 @@
       }
 
       #forgive-button {
+        margin: 0 10px;
         padding: 10px 20px;
         font-size: 16px;
         background-color: #4caf50;
@@ -59,34 +60,71 @@
         font-size: 48px;
         margin-top: 20px;
       }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 10px;
+          background-size: 100% auto;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        #forgive-button,
+        #no-button {
+          padding: 5px 10px;
+          font-size: 14px;
+        }
+
+        #thanks-message {
+          font-size: 18px;
+        }
+
+        #celebration {
+          font-size: 24px;
+        }
+      }
     </style>
   </head>
   <body>
-    <h1>I Am Sorry.. Please Forgive Me</h1>
+    <h1 id="title">I am Sorry hai.. Your answer?</h1>
     <button id="forgive-button" onclick="forgive()">
       <i class="fas fa-check"></i> Yes
     </button>
     <button id="no-button" onmouseover="moveCursor()">
       <i class="fas fa-times"></i> No
-      <!-- Add times icon -->
     </button>
 
-    <div id="thanks-message">Thanks! 🎉</div>
+    <div id="thanks-message">
+      <h1>Thanks 🎉</h1>
+      <img
+        src="./274592834_1009573089768363_3207659323809213611_n.jpg"
+        alt=""
+      />
+    </div>
     <div id="celebration"></div>
 
     <script>
       function forgive() {
-        document.getElementById("forgive-button").style.display = "none";
-        document.getElementById("no-button").style.display = "none";
-        document.getElementById("thanks-message").style.display = "block";
+        document.body.style.backgroundImage = "none"; // Remove the background image
+        document.getElementById("title").style.display = "none"; // Hide the h1 element
+        document.getElementById("forgive-button").style.display = "none"; // Hide the forgive button
+        document.getElementById("no-button").style.display = "none"; // Hide the no button
+        document.getElementById("thanks-message").style.display = "block"; // Show the thanks message
 
         const emojis = ["🎉", "🎊", "🥳", "🎈", "🍰", "🍾"];
         const celebration = document.getElementById("celebration");
         let i = 0;
         setInterval(() => {
-          celebration.textContent = emojis[i];
+          const emoji = document.createElement("span");
+          emoji.textContent = emojis[i];
+          emoji.style.position = "absolute";
+          emoji.style.left = Math.random() * 100 + "%";
+          emoji.style.top = Math.random() * 100 + "%";
+          celebration.appendChild(emoji);
           i = (i + 1) % emojis.length;
-        }, 500);
+        }, 50);
       }
 
       function moveCursor() {
