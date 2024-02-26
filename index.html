@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apology Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Add Font Awesome -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+        background-image: url("brett-jordan-S4tm-mox-xQ-unsplash.jpg"); /* Set the image as background */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 1500px 1000px;
+        background-position: top;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      #forgive-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      #forgive-button:hover {
+        transform: scale(1.05);
+      }
+
+      #no-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+      }
+
+      #thanks-message {
+        display: none;
+        font-size: 24px;
+        margin-top: 20px;
+      }
+
+      #celebration {
+        font-size: 48px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>I Am Sorry.. Please Forgive Me</h1>
+    <button id="forgive-button" onclick="forgive()">
+      <i class="fas fa-check"></i> Yes
+    </button>
+    <button id="no-button" onmouseover="moveCursor()">
+      <i class="fas fa-times"></i> No
+      <!-- Add times icon -->
+    </button>
+
+    <div id="thanks-message">Thanks! 🎉</div>
+    <div id="celebration"></div>
+
+    <script>
+      function forgive() {
+        document.getElementById("forgive-button").style.display = "none";
+        document.getElementById("no-button").style.display = "none";
+        document.getElementById("thanks-message").style.display = "block";
+
+        const emojis = ["🎉", "🎊", "🥳", "🎈", "🍰", "🍾"];
+        const celebration = document.getElementById("celebration");
+        let i = 0;
+        setInterval(() => {
+          celebration.textContent = emojis[i];
+          i = (i + 1) % emojis.length;
+        }, 500);
+      }
+
+      function moveCursor() {
+        const button = document.getElementById("no-button");
+        const maxX = window.innerWidth - button.offsetWidth;
+        const maxY = window.innerHeight - button.offsetHeight;
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+        button.style.left = randomX + "px";
+        button.style.top = randomY + "px";
+      }
+    </script>
+  </body>
+</html>
